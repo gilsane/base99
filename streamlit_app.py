@@ -63,8 +63,6 @@ st.video("https://www.youtube.com/watch?v=aHNsrx8H21g")
 
 st.write("Most objects") # df, err, func, keras!
 st.write(["st", "is <", 3])
-st.write_stream(my_generator)
-st.write_stream(my_llm_stream)
 
 st.text("Fixed width text")
 st.markdown("_Markdown_")
