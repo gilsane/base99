@@ -60,6 +60,6 @@ with col2:
         cols = st.columns(2)
         for j, vid in enumerate(videos[i:i+2]):
             cols[j].markdown(
-                f'<iframe width="100%" height="200" src="{vid}" frameborder="0" allowfullscreen></iframe>',
+                f'<iframe width="200%" height="400" src="{vid}" frameborder="0" allowfullscreen></iframe>',
                 unsafe_allow_html=True,
             )
