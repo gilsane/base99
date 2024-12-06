@@ -1,9 +1,14 @@
 import streamlit as st
 
-# 페이지 데이터 정의
+# 페이지 데이터 정의 (이미지 URL과 YouTube 영상 URL)
 pages = {
     "Page 1": {
-        "images": ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg"],
+        "images": [
+            "https://via.placeholder.com/150",
+            "https://via.placeholder.com/150",
+            "https://via.placeholder.com/150",
+            "https://via.placeholder.com/150",
+        ],
         "videos": [
             "https://www.youtube.com/embed/dQw4w9WgXcQ",
             "https://www.youtube.com/embed/3JZ_D3ELwOQ",
@@ -12,7 +17,12 @@ pages = {
         ],
     },
     "Page 2": {
-        "images": ["image5.jpg", "image6.jpg", "image7.jpg", "image8.jpg"],
+        "images": [
+            "https://via.placeholder.com/150/FF0000",
+            "https://via.placeholder.com/150/00FF00",
+            "https://via.placeholder.com/150/0000FF",
+            "https://via.placeholder.com/150/FFFF00",
+        ],
         "videos": [
             "https://www.youtube.com/embed/XqZsoesa55w",
             "https://www.youtube.com/embed/JGwWNGJdvx8",
@@ -20,7 +30,7 @@ pages = {
             "https://www.youtube.com/embed/2vjPBrBU-TM",
         ],
     },
-    # Page 3, Page 4, Page 5을 원하는 이미지 및 동영상으로 추가
+    # 추가 페이지 정의 가능
 }
 
 # 사이드바에서 페이지 선택
