@@ -1,74 +1,55 @@
-#기본적인 Streamlit 페이지 예제
-
-# streamlit_app.py
 import streamlit as st
-import pandas as pd
 
-# 1. 제목
-st.title("장원재의 스트림릿 서비스")
+# 페이지 데이터 정의
+pages = {
+    "Page 1": {
+        "images": ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg"],
+        "videos": [
+            "https://www.youtube.com/embed/dQw4w9WgXcQ",
+            "https://www.youtube.com/embed/3JZ_D3ELwOQ",
+            "https://www.youtube.com/embed/2Vv-BfVoq4g",
+            "https://www.youtube.com/embed/L_jWHffIx5E",
+        ],
+    },
+    "Page 2": {
+        "images": ["image5.jpg", "image6.jpg", "image7.jpg", "image8.jpg"],
+        "videos": [
+            "https://www.youtube.com/embed/XqZsoesa55w",
+            "https://www.youtube.com/embed/JGwWNGJdvx8",
+            "https://www.youtube.com/embed/hT_nvWreIhg",
+            "https://www.youtube.com/embed/2vjPBrBU-TM",
+        ],
+    },
+    # Page 3, Page 4, Page 5을 원하는 이미지 및 동영상으로 추가
+}
 
-# 2. 부제목
-st.subheader("와우!!! 다양한 서비스!!!!")
+# 사이드바에서 페이지 선택
+st.sidebar.title("Page Selector")
+selected_page = st.sidebar.selectbox("Select a page:", list(pages.keys()))
 
-st.title("만두는 최고야!!!!")
+# 선택된 페이지 데이터 가져오기
+page_data = pages[selected_page]
+images = page_data["images"]
+videos = page_data["videos"]
 
-# 3. 판다스 데이터프레임 기반 표 출력
-df = pd.DataFrame({
-    "이름": ["장원재", "조용수", "Charlie"],
-    "나이": [70, 99, 29],
-    "나라": ["Korea", "USA", "UK"]
-})
-st.write("데이터프레임 예제")
-st.dataframe(df)
+# 레이아웃 생성
+col1, col2 = st.columns(2)
 
-# 4. HTML 활용 예제
-st.write("HTML 예제")
-st.markdown(
-    """
-    <div style="color: blue; font-size: 20px;">
-        HTML을 활용한 예시 텍스트입니다.
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+# 이미지 표시
+with col1:
+    st.header("Images")
+    for i in range(0, len(images), 2):
+        cols = st.columns(2)
+        for j, img in enumerate(images[i:i+2]):
+            cols[j].image(img, use_column_width=True)
 
-# 5. HTML과 CSS 활용 예제
-st.write("HTML과 CSS 예제")
-st.markdown(
-    """
-    <style>
-    .styled-box {
-        padding: 20px;
-        margin: 5px;
-        background-color: lightgreen;
-        border-radius: 5px;
-        color: darkgreen;
-    }
-    </style>
-    <div class="styled-box">
-        HTML과 CSS를 함께 사용하여 스타일링한 박스입니다.
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-# 6. 이미지 표시
-st.write("이미지 표시 예제")
-st.image("https://i.namu.wiki/i/BQKa8GCZMjCRCDBzbCF7uBtPO_aHoflLZOreUGY7WOlL16HwLqJpxZv9IoAI2lviaDIgGJWf0iR_QR-rA9gGAQ.webp", caption="Streamlit 로고")
-
-# 7. 유튜브 링크 (썸네일 표시)
-st.write("유튜브 동영상 예제")
-st.video("https://www.youtube.com/watch?v=aHNsrx8H21g")
-
-
-st.write("Most objects") # df, err, func, keras!
-st.write(["st", "is <", 3])
-
-st.text("Fixed width text")
-st.markdown("_Markdown_")
-st.latex(r""" e^{i\pi} + 1 = 0 """)
-st.title("My title")
-st.header("My header")
-st.subheader("My sub")
-st.code("for i in range(8): foo()")
-st.html("<p>Hi!</p>")
+# YouTube 동영상 표시
+with col2:
+    st.header("Videos")
+    for i in range(0, len(videos), 2):
+        cols = st.columns(2)
+        for j, vid in enumerate(videos[i:i+2]):
+            cols[j].markdown(
+                f'<iframe width="100%" height="200" src="{vid}" frameborder="0" allowfullscreen></iframe>',
+                unsafe_allow_html=True,
+            )
