@@ -7,7 +7,7 @@ file_urls = {
 }
 
 # Load a file from GitHub
-@st.cache
+@st.cache_data
 def load_file(file_url):
     return pd.read_csv(file_url)
 
